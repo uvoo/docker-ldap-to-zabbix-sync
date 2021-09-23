@@ -2,7 +2,7 @@
 set -e
 
 echo "Style check."
-pip install flake8 && flake8 app.py
+# pip install flake8 && flake8 zabbix-ldap.conf  # Not ready yet
 
 apt-get install -y gettext-base
 envsubst < zabbix-ldap.conf.envsubst > zabbix-ldap.conf
