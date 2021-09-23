@@ -1,0 +1,55 @@
+[ldap]
+type = ${LDAP_TYPE}
+uri = ${LDAP_URI}
+base = ${LDAP_BASE}
+binduser = ${LDAP_BINDUSER}
+bindpass = ${LDAP_BINDPASS}
+groups = ${GROUPS}
+media = ${MEDIA}
+
+[activedirectory]
+filtergroup = (&(objectClass=group)(name=%s))
+filteruser = (&(objectClass=user)(objectCategory=Person))
+filterdisabled = (!(userAccountControl:1.2.840.113556.1.4.803:=2))
+filtermemberof = (memberOf:1.2.840.113556.1.4.1941:=%s)
+groupattribute = member
+# Active Directory
+userattribute = sAMAccountName
+# Azure Active Directory
+#userattribute = userPrincipalName
+
+[openldap]
+type = posix
+filtergroup = (&(objectClass=posixGroup)(cn=%s))
+filteruser = (&(objectClass=posixAccount)(uid=%s))
+groupattribute = memberUid
+userattribute = uid
+
+[zabbix]
+# server = https://zabbix.example.org/zabbix
+server = ${ZABBIX_URL}
+username = ${ZABBIX_USERNAME}
+password = {{ ZABBIX_USERPASS }}
+auth = webform
+alldirusergroup = LDAPSyncedUsers
+
+[user]
+# see https://www.zabbix.com/documentation/current/manual/api/reference/user/object
+# use "type" for releases prior 5.2,
+# type = 1
+# use "roleid" for releases after 5.2, comment out "type"
+# roleid = 1  # user
+# roleid = 3
+roleid = 1
+timezone = America/Denver
+rows_per_page = 100
+# display password when creating new users
+show_password = false
+
+[media]
+name = Email (HTML)
+severity = Disaster,High,Average,Warning
+period = 1-7,00:07-22:00
+# 1=disabled, 0=enabled
+active = 1
+onlycreate = true

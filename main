@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+set -e
+echo "Setting vars from envs"
+envsubst < zabbix-ldap.conf.envsubst > zabbix-ldap.conf
+echo "Starting application"
+
+sync(){
+  echo "Starting to sync. Next sync in ${INTERVAL_SECONDS} seconds."
+  if [[ "${VALIDATE_CERTIFICATE}" -eq 0 ]]; then
+    echo "I: Skipping certificate validations."
+    ./zabbix-ldap-sync -f  zabbix-ldap.conf --no-check-certificate
+  else
+    echo ""
+    ./zabbix-ldap-sync -f  zabbix-ldap.conf
+  fi
+}
+
+while true; do
+  sync
+  sleep ${INTERVAL_SECONDS}
+done
