@@ -5,17 +5,26 @@ envsubst < zabbix-ldap.conf.envsubst > zabbix-ldap.conf
 echo "Starting application"
 
 sync(){
-  echo "Starting to sync. Next sync in ${INTERVAL_SECONDS} seconds."
-  if [[ "${VALIDATE_CERTIFICATE}" -eq 0 ]]; then
-    echo "I: Skipping certificate validations."
-    python3 zabbix-ldap-sync -f  zabbix-ldap.conf --no-check-certificate  --verbose
+  echo "Starting to sync. Next sync in ${ZBX_LDAPSYNC_INTERVAL_SECONDS} seconds."
+  if [[ "${ZBX_LDAPSYNC_VERBOSE}" -eq 1 ]]; then
+    verbose = "--verbose"
   else
-    echo ""
-    python3 zabbix-ldap-sync -f  zabbix-ldap.conf  --verbose
+    verbose = ""
   fi
+  
+  if [[ "${ZBX_LDAPSYNC_VALIDATE_CERTIFICATE}" -eq 0 ]]; then
+    echo "I: Skipping certificate validations."
+    no_validate_cert="--no-check-certificate"
+  else
+    no_validate_cert=""
+  fi
+
+  echo "Connection to $ZBX_LDAPSYNC_URI"
+
+  python3 zabbix-ldap-sync -f  zabbix-ldap.conf $no_validate_cert $verbose 
 }
 
 while true; do
   sync
-  sleep ${INTERVAL_SECONDS}
+  sleep ${ZBX_LDAPSYNC_INTERVAL_SECONDS}
 done
