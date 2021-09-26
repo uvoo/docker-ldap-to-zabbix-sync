@@ -6,7 +6,7 @@ echo "Style check."
 
 echo "Build and push docker container to Dockerhub."
 release=latest
-tag="uvoo/ldap-to-zabbix-sync:$release"
+tag="uvoo/ldap-tozabbix-sync:$release"
 docker build --tag $tag .
 echo $DOCKERHUB_TOKEN | docker login --username $DOCKERHUB_USERNAME --password-stdin
 docker push $tag 
