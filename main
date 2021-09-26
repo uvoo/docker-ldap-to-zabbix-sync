@@ -20,6 +20,7 @@ sync(){
   fi
 
   echo "Connection to $ZBX_LDAPSYNC_URI"
+  cat zabbix-ldap.conf
 
   python3 zabbix-ldap-sync -f  zabbix-ldap.conf $no_validate_cert $verbose 
 }
