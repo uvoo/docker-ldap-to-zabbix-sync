@@ -12,6 +12,7 @@ RUN apt-get update && \
     libpython3.*-dev \
     libldap2-dev \
     libsasl2-dev \
+    gcc \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 COPY main .
