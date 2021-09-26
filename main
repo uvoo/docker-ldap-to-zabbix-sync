@@ -7,9 +7,9 @@ echo "Starting application"
 sync(){
   echo "Starting to sync. Next sync in ${ZBX_LDAPSYNC_INTERVAL_SECONDS} seconds."
   if [[ "${ZBX_LDAPSYNC_VERBOSE}" -eq 1 ]]; then
-    verbose = "--verbose"
+    verbose="--verbose"
   else
-    verbose = ""
+    verbose=""
   fi
   
   if [[ "${ZBX_LDAPSYNC_VALIDATE_CERTIFICATE}" -eq 0 ]]; then
