@@ -8,10 +8,10 @@ sync(){
   echo "Starting to sync. Next sync in ${INTERVAL_SECONDS} seconds."
   if [[ "${VALIDATE_CERTIFICATE}" -eq 0 ]]; then
     echo "I: Skipping certificate validations."
-    ./zabbix-ldap-sync -f  zabbix-ldap.conf --no-check-certificate
+    python3 zabbix-ldap-sync -f  zabbix-ldap.conf --no-check-certificate
   else
     echo ""
-    ./zabbix-ldap-sync -f  zabbix-ldap.conf
+    python3 zabbix-ldap-sync -f  zabbix-ldap.conf
   fi
 }
 
