@@ -1,11 +1,11 @@
 [ldap]
-type = ${LDAP_TYPE}
-uri = ${LDAP_URI}
-base = ${LDAP_BASE}
-binduser = ${LDAP_BINDUSER}
-bindpass = ${LDAP_BINDPASS}
-groups = ${GROUPS}
-media = ${MEDIA}
+type = ${ZBX_LDAPSYNC_TYPE}
+uri = ${ZBX_LDAPSYNC__URI}
+base = ${ZBX_LDAPSYNC_BASE}
+binduser = ${ZBX_LDAPSYNC_BINDUSER}
+bindpass = ${ZBX_LDAPSYNC_BINDPASS}
+groups = ${ZBX_LDAPSYNC_GROUPS}
+media = ${ZBX_LDAPSYNC_MEDIA}
 
 [activedirectory]
 filtergroup = (&(objectClass=group)(name=%s))
