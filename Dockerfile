@@ -19,7 +19,8 @@ COPY main .
 COPY zabbix-ldap.conf.envsubst .
 # ADD https://raw.githubusercontent.com/zabbix-tooling/zabbix-ldap-sync/master/requirements.txt .
 COPY zabbix-ldap-sync .
-COPY lib/ /lib/
+# COPY lib/ /lib/
+ADD lib . 
 COPY requirements.txt .
 RUN pip3 install -r requirements.txt
 # ADD https://raw.githubusercontent.com/zabbix-tooling/zabbix-ldap-sync/master/zabbix-ldap-sync .
