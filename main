@@ -6,6 +6,10 @@ echo "Starting application"
 
 sync(){
   echo "Starting to sync. Next sync in ${ZBX_LDAPSYNC_INTERVAL_SECONDS} seconds."
+  if [[ "${ZBX_LDAPSYNC_SHOW_CONF}" -eq 1 ]]; then
+    cat zabbix-ldap.conf
+  fi
+
   if [[ "${ZBX_LDAPSYNC_VERBOSE}" -eq 1 ]]; then
     verbose="--verbose"
   else
@@ -20,7 +24,6 @@ sync(){
   fi
 
   echo "Connection to $ZBX_LDAPSYNC_URI"
-  cat zabbix-ldap.conf
 
   python3 zabbix-ldap-sync -f  zabbix-ldap.conf $no_validate_cert $verbose 
 }

@@ -1,6 +1,6 @@
 [ldap]
 type = ${ZBX_LDAPSYNC_TYPE}
-uri = ${ZBX_LDAPSYNC__URI}
+uri = ${ZBX_LDAPSYNC_URI}
 base = ${ZBX_LDAPSYNC_BASE}
 binduser = ${ZBX_LDAPSYNC_BINDUSER}
 bindpass = ${ZBX_LDAPSYNC_BINDPASS}
@@ -29,7 +29,7 @@ userattribute = uid
 # server = https://zabbix.example.org/zabbix
 server = ${ZABBIX_URL}
 username = ${ZABBIX_USERNAME}
-password = {{ ZABBIX_USERPASS }}
+password = ${ZABBIX_USERPASS}
 auth = webform
 alldirusergroup = LDAPSyncedUsers
 
