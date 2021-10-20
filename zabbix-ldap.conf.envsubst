@@ -38,9 +38,14 @@ alldirusergroup = LDAPSyncedUsers
 # use "type" for releases prior 5.2,
 # type = 1
 # use "roleid" for releases after 5.2, comment out "type"
+#      1 | User role        |    1 |        0
+#      2 | Admin role       |    2 |        0
+#      3 | Super admin role |    3 |        1
+#      4 | Guest role       |    1 |        0
 # roleid = 1  # user
+# roleid =2 # Admin
 # roleid = 3
-roleid = 1
+roleid = 2
 timezone = America/Denver
 rows_per_page = 100
 # display password when creating new users
