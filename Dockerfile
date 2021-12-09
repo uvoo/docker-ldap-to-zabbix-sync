@@ -8,21 +8,19 @@ RUN apt-get update && \
     python3 \
     python3-pip \
     python-dev \
-    virtualenv \
-    libpython3.*-dev \
-    libldap2-dev \
-    libsasl2-dev \
-    gcc \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 COPY main .
-COPY zabbix-ldap.conf.envsubst .
+COPY config.yaml.envsubst .
+COPY createFileFromJinjaUsingEnv.py .
+COPY config.yaml.jinja .
 # ADD https://raw.githubusercontent.com/zabbix-tooling/zabbix-ldap-sync/master/requirements.txt .
-COPY zabbix-ldap-sync .
-COPY lib/ ./lib/
+COPY Ldap.py .
+COPY ldap2zabbix.py .
+COPY Zabbix.py .
 COPY requirements.txt .
 RUN pip3 install -r requirements.txt
 # ADD https://raw.githubusercontent.com/zabbix-tooling/zabbix-ldap-sync/master/zabbix-ldap-sync .
 
-RUN chmod +x zabbix-ldap-sync main
+RUN chmod +x main
 ENTRYPOINT [ "bash", "-e", "main" ]
