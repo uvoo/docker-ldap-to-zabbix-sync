@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:focal
 
 WORKDIR /app
 
@@ -7,7 +7,7 @@ RUN apt-get update && \
     gettext-base \
     python3 \
     python3-pip \
-    # python-dev \
+    python-dev \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 COPY main .
