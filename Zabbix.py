@@ -7,14 +7,14 @@ def resolve_permission(name):
     if name == 'denied':
         return '0'
 
-    if name == 'read-only':
+    if name == 'read':
         return '2'
 
     if name == 'read-write':
         return '3'
 
     logging.error(f"Permission {name} not found.")
-    logging.error("Possible permissions: 'denied', 'ready-only', 'read-write'.")
+    logging.error("Possible permissions: 'denied', 'ready', 'read-write'.")
     raise Exception(f"Permission {name} not found.")
 
 
