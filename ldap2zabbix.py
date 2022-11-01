@@ -108,30 +108,32 @@ if __name__ == '__main__':
         members = ldap.get_group_member(group['dn'])
 
         for member in members:
+            ou = member.split(',')[1]
 
-            # get the ldap user
-            ldapUser = ldap.get_user(member)
+            #Don't process distribution lists
+            if ou != "OU=Distribution Lists":
+                # get the ldap user
+                ldapUser = ldap.get_user(member)
 
-            username = ldapUser['sAMAccountName']
+                username = ldapUser['sAMAccountName']
 
-            # if user is not in cache, add to cache
-            if username not in users:
-                users[username] = {
-                    'username': username,
-                    'name': ldapUser['givenName'],
-                    'surname': ldapUser['sn'],
-                    'usrgrps': [],
-                    'roleid': zabbix.get_role_id(zabbixDefaultRole)
-                }
+                # if user is not in cache, add to cache
+                if username not in users:
+                    users[username] = {
+                        'username': username,
+                        'name': ldapUser['givenName'],
+                        'surname': ldapUser['sn'],
+                        'usrgrps': [],
+                        'roleid': zabbix.get_role_id(zabbixDefaultRole)
+                    }
 
-            # add role to user (default if group role not present)
-            if 'role' in group:
-                users[username]['roleid'] = zabbix.get_role_id(group['role'])
+                # add role to user (default if group role not present)
+                if 'role' in group:
+                    users[username]['roleid'] = zabbix.get_role_id(group['role'])
 
-            users[username]['usrgrps'].append({
-                'usrgrpid': z_group_id
-            })
-
+                users[username]['usrgrps'].append({
+                    'usrgrpid': z_group_id
+                })
     # Updating users
     for user in users:
         # create or update Zabbix users from LDAP
