@@ -23,4 +23,5 @@ RUN pip3 install -r requirements.txt
 # ADD https://raw.githubusercontent.com/zabbix-tooling/zabbix-ldap-sync/master/zabbix-ldap-sync .
 
 RUN chmod +x main
-ENTRYPOINT [ "bash", "-e", "main" ]
+# ENTRYPOINT [ "bash", "-e", "main" ]
+CMD [ "./main" ]
