@@ -1,5 +1,6 @@
 #!/bin/bash
 set -eu
+
 # echo "Setting vars from envs"
 # envsubst < config.yaml.envsubst > config.yaml
 # echo "Starting application"
@@ -47,7 +48,6 @@ showConf(){
 }
 
 main(){
-  echo "Starting main"
   processTemplates
   showConf
   while true; do
@@ -56,4 +56,5 @@ main(){
   done
 }
 
+echo "Starting main"
 main
