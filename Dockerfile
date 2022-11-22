@@ -11,7 +11,7 @@ RUN apt-get update && \
     python-dev \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-COPY main.sh .
+COPY main .
 COPY config.yaml.envsubst .
 COPY createFileFromJinjaUsingEnv.py .
 COPY config.yaml.jinja .
@@ -23,7 +23,6 @@ COPY requirements.txt .
 RUN pip3 install -r requirements.txt
 # ADD https://raw.githubusercontent.com/zabbix-tooling/zabbix-ldap-sync/master/zabbix-ldap-sync .
 
-RUN chmod +x main.sh
-ENTRYPOINT [ "/app/main.sh" ]
-# ENTRYPOINT [ "bash", "-e", "main" ]
-# CMD [ "./main.sh" ]
+RUN chmod +x main
+ENTRYPOINT [ "bash", "-e", "main" ]
+# ENTRYPOINT [ "/app/main" ]
