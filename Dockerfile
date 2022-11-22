@@ -1,4 +1,4 @@
-FROM ubuntu:jammy
+FROM ubuntu:focal
 SHELL ["/bin/bash", "-c"]
 
 WORKDIR /app
