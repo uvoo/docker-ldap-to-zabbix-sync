@@ -8,6 +8,6 @@ echo "Build and push docker container to Dockerhub."
 release=latest
 tag="uvoo/ldap-tozabbix-sync:$release"
 docker build --tag $tag .
-echo $DOCKERHUB_TOKEN | docker login --username $DOCKERHUB_USERNAME --password-stdin
+echo $DOCKERHUB_USERTOKEN | docker login --username $DOCKERHUB_USERNAME --password-stdin
 docker push $tag 
 docker logout
