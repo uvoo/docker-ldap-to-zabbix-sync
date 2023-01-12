@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -e
+set -eu
 
 echo "Style check."
 # pip install flake8 && flake8 zabbix-ldap.conf  # Not ready yet
